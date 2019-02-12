@@ -7,7 +7,7 @@ title: Building Images without a Docker Deamon
 While there have been many developments in the operations of containers in the last years, the creation process of container images has basically remained the same. Still the majority of people are using Docker to create images. In this first blog post I want to take a look at alternatives to the "old fashioned" docker deamon.
 
 ### Problem
-The use of Docker to create images is nothing to complain about. However, there are some boundary conditions of an architectural and safety nature that make it difficult or nowadays even impossible to use, for example, in Kubernetes. The docker deamon itself is monolithic and if an image should be build, privileged access to the Linux kernel is needed. If you are interested in the technical background, please refer to [this article] (https://blog.jessfraz.com/post/building-container-images-securely-on-kubernetes/) or [this article](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/).
+The use of Docker to create images is nothing to complain about. However, there are some boundary conditions of an architectural and safety nature that make it difficult or nowadays even impossible to use, for example, in Kubernetes. The docker deamon itself is monolithic and if an image should be build, privileged access to the Linux kernel is needed. If you are interested in the technical background, please refer to [this article](https://blog.jessfraz.com/post/building-container-images-securely-on-kubernetes/) or [this article](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/).
 
 So as soon docker builds should happen inside a kubernetes cluster (e.g for scaled CI with Jenkins) one option is to use the volume mechanism to pass the docker socket for controlling the daemon into the build container.
 
@@ -25,4 +25,4 @@ An option which I like very much is [The Google Java Image Builder](https://gith
 - Fast - Deploy your changes fast. Jib separates your application into multiple layers, splitting dependencies from classes. Now you don’t have to wait for Docker to rebuild your entire Java application - just deploy the layers that changed.
 - Daemonless - Reduce your CLI dependencies. Build your Docker image from within Maven or Gradle and push to any registry of your choice. No more writing Dockerfiles and calling docker build/push.
 
-Have a look at my [Gradle Spring Boot Hello World](https://github.com/gluehbirnenkopf/Gradle) application to get familar with JIB.
+Feel free to have a look at my [Gradle Spring Boot Hello World](https://github.com/gluehbirnenkopf/Gradle) application to get familar with JIB.

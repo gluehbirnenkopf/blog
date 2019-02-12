@@ -1,10 +1,26 @@
 ---
 layout: post
-title: You're up and running!
+title: Building Images without a Docker Deamon
 ---
 
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
+While there have been many developments in the operations of containers in recent years, the creation of container images has basically remained the same. Still the majority of people are using Docker to create images. In this article we want to take a look at alternatives to the "old fashioned" docker deamon.
 
-![_config.yml]({{ site.baseurl }}/images/config.png)
+The use of Docker to create images is nothing to complain about. However, there are some boundary conditions of an architectural and safety nature that make it difficult to use, for example, in Kubernetes. The docker deamon itself is monolithic. And if an image should be build, privileged access to the Linux kernel is needed. If you are interested in the technical background, please refer to [this article] (https://blog.jessfraz.com/post/building-container-images-securely-on-kubernetes/)
 
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
+So as soon docker builds should happen inside a kubernetes cluster (e.g for CI with Jenkins) One option is to use the volume mechanism to pass the docker socket for controlling the daemon into the build container.
+
+Of course, this has implications for system security because it gives control over parts of the host system in containers. Therefore, in many environments this is not an option. Furthermore the cloud providers continuously improve security of there kubernetes implementations, which means there is [no docker engine at all](https://cloud.google.com/blog/products/containers-kubernetes/containerd-available-for-beta-testing-in-google-kubernetes-engine) to be used for building. IBM and Google for example offer only a container runtime, which has no functionalities to build images, instead it focuses on efficient execution of images and is also more performant then a classical docker deamon.
+
+Another option is to use Docker-in-Docker images. A Docker daemon is started in a separate container and driven out of the build container. For example, in a Kubernetes cluster, this can be done as another container on the same pod. This has defused the release of control over the host system. However, the Docker-in-Docker design also requires privileged access to the Linux kernel.
+
+Now how to solve this Problem?
+
+In some cases, cloud providers with products such as Google Cloud Container Builder or Azure Container Registry Build also provide this functionality as a service, but not everyone offers this functionality yet. Another option would be to just use a dedicated VM to build images, but this requires additonal maintenance efforts and maybe not as efficient as scaling build containers on demand.
+
+An option which I like very much is [The Google Java Image Builder](https://github.com/GoogleContainerTools/jib) (JIB). It offers a java based build process for your application and is fully integrated to build Tools like maven and Gradle. 
+
+* Reproducible - Rebuilding your container image with the same contents always generates the same image. Never trigger an unnecessary update again.
+- Fast - Deploy your changes fast. Jib separates your application into multiple layers, splitting dependencies from classes. Now you don’t have to wait for Docker to rebuild your entire Java application - just deploy the layers that changed.
+- Daemonless - Reduce your CLI dependencies. Build your Docker image from within Maven or Gradle and push to any registry of your choice. No more writing Dockerfiles and calling docker build/push.
+
+

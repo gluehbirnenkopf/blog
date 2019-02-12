@@ -32,4 +32,4 @@ An option which I like most is [The Google Java Image Builder](https://github.co
 
 Due to the high level of integration in your build process, JIB knows which .jar it needs to copy inside the referenced base image. Other build parameters like the image tag provide where your image should be published to. Which makes JIB easy to configure as no Dockerfile is needed.
 
-Feel free to have a look at my [Gradle Spring Boot Hello World](https://github.com/gluehbirnenkopf/Gradle) application to get familar with JIB.
+Feel free to have a look at my [Gradle JIB example repo](https://github.com/gluehbirnenkopf/gradle-jib) application to get familar with JIB.

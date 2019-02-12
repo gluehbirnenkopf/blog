@@ -3,7 +3,7 @@ layout: post
 title: Building Images without a Docker Deamon
 ---
 
-[Google Cloud Container Tools enable Developers easy Cloud operations](https://github.com/gluehbirnenkopf/gluehbirnenkopf.github.io/blob/master/images/ciobulletin-google-releases-java-software-jib.jpg
+![Google Cloud Container Tools enable Developers easy Cloud operations](https://github.com/gluehbirnenkopf/gluehbirnenkopf.github.io/blob/master/images/ciobulletin-google-releases-java-software-jib.jpg
  "an image title")
 
 ### Motivation

@@ -25,4 +25,4 @@ An option which I like very much is [The Google Java Image Builder](https://gith
 - Fast - Deploy your changes fast. Jib separates your application into multiple layers, splitting dependencies from classes. Now you don’t have to wait for Docker to rebuild your entire Java application - just deploy the layers that changed.
 - Daemonless - Reduce your CLI dependencies. Build your Docker image from within Maven or Gradle and push to any registry of your choice. No more writing Dockerfiles and calling docker build/push.
 
-
+Have a look at my [Gradle Spring Boot Hello World](https://github.com/gluehbirnenkopf/Gradle) application to get familar with JIB.

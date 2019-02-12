@@ -4,7 +4,7 @@ title: Building Images without a Docker Deamon
 ---
 
 ![Google Cloud Container Tools enable Developers easy Cloud operations](https://github.com/gluehbirnenkopf/gluehbirnenkopf.github.io/blob/master/images/ciobulletin-google-releases-java-software-jib.jpg
- "an image title")
+ "Google Cloud Container Tools enable Developers easy Cloud operations")
 
 ### Motivation
 While there have been many developments in the operations of containers in the last years, the creation process of container images has basically remained the same. Still the majority of people are using Docker to create images. In this first blog post I want to take a look at alternatives to the "old fashioned" docker deamon and why these alternatives become more and more popular.

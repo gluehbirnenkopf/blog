@@ -15,7 +15,7 @@ Of course, this has implications for system security because it gives control ov
 
 Another option is to use Docker-in-Docker images. A Docker daemon is started in a separate container and driven out of the build container. For example, in a Kubernetes cluster, this can be done as another container on the same pod. This has defused the release of control over the host system. However, the Docker-in-Docker design also requires privileged access to the Linux kernel.
 
-##Now how to solve this Problem?
+## Now how to solve this Problem?
 
 In some cases, cloud providers with products such as Google Cloud Container Builder or Azure Container Registry Build also provide this functionality as a service, but not everyone offers this functionality yet. Another option would be to just use a dedicated VM to build images, but this requires additonal maintenance efforts and maybe not as efficient as scaling build containers on demand.
 

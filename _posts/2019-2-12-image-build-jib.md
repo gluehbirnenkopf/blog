@@ -27,10 +27,10 @@ An option which I like most is [The Google Java Image Builder](https://github.co
 
 #### What does JIB offer?
 
-* Reproducibility - Rebuilding your container image with the same contents always generates the same image. Never trigger an unnecessary update again.
+* Reproducibility - Rebuilding your container image with the same contents always generates the same image. Never trigger an unnecessary update again. This also makes the CI Image build very transparent, as developers define the build process in their build tool.
 - Fast Operations - Deploy your changes fast. Jib separates your application into multiple layers, splitting dependencies from classes. Now you don’t have to wait for Docker to rebuild your entire Java application - just deploy the layers that changed.
 - Daemonless - Reduce your CLI dependencies. Build your Docker image from within Maven or Gradle and push to any registry of your choice. No more writing Dockerfiles and calling docker build/push.
 
-Due to the high level of integration in your build process, JIB knows which .jar it needs to copy inside the referenced base image. Other build parameters like the image tag provide where your image should be published to. Which makes JIB easy to configure as no Dockerfile is needed.
+Due to the high level of integration in your build process, JIB has all information which .jar it needs to copy inside the referenced base image. Other build parameters like the image tag are providing where your image will be published to. This makes JIB easy to configure as no Dockerfile is needed.
 
 Feel free to have a look at my [Gradle JIB example](https://github.com/gluehbirnenkopf/gradle-jib) application to get familar with JIB.
